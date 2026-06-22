@@ -1,0 +1,6 @@
+{
+  "name": "Учет Депозитов",
+  "description": "Android-приложение на Kotlin и Jetpack Compose для отслеживания инвестиций и депозитов с использованием Room DB и экспорта/импорта в XLSX.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

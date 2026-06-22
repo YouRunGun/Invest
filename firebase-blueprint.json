@@ -1,0 +1,42 @@
+{
+  "entities": {
+    "Deposit": {
+      "title": "Deposit",
+      "description": "Information about an investment tracking deposit",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "number",
+          "description": "Unique ID of the deposit"
+        },
+        "date": {
+          "type": "string",
+          "description": "Date of deposit (DD.MM.YYYY)"
+        },
+        "amountByn": {
+          "type": "number",
+          "description": "Deposit amount in BYN"
+        },
+        "amountUsd": {
+          "type": "number",
+          "description": "Deposit amount in USD"
+        },
+        "commissionByn": {
+          "type": "number",
+          "description": "Commission in BYN"
+        },
+        "commissionUsd": {
+          "type": "number",
+          "description": "Commission in USD"
+        }
+      },
+      "required": ["id", "date", "amountByn", "amountUsd", "commissionByn", "commissionUsd"]
+    }
+  },
+  "firestore": {
+    "deposits/{depositId}": {
+      "schema": "Deposit",
+      "description": "Collection of investment tracker deposits"
+    }
+  }
+}

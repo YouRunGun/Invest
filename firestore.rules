@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isValidDeposit(data) {
+      return data.keys().hasAll(['id', 'date', 'amountByn', 'amountUsd', 'commissionByn', 'commissionUsd'])
+        && data.keys().size() == 6
+        && data.id is number
+        && data.date is string
+        && data.amountByn is number
+        && data.amountUsd is number
+        && data.commissionByn is number
+        && data.commissionUsd is number;
+    }
+
+    match /deposits/{depositId} {
+      allow read: if true;
+      allow create, update: if isValidDeposit(request.resource.data);
+      allow delete: if true;
+    }
+  }
+}
