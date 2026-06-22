@@ -224,28 +224,39 @@ export default function App() {
       });
       
       if (snapshot.empty) {
-        setIsDbLoading(false);
-        // Первичный сид INITIAL_DEPOSITS в Firestore, если облако пустое, чтобы пользователь видел дефолтные данные
-        const batch = writeBatch(db);
-        INITIAL_DEPOSITS.forEach(dep => {
-          const docRef = doc(db, 'deposits', String(dep.id));
-          batch.set(docRef, {
-            id: dep.id,
-            date: dep.date,
-            amountByn: dep.amountByn,
-            amountUsd: dep.amountUsd,
-            commissionByn: dep.commissionByn,
-            commissionUsd: dep.commissionUsd
+        const isAlreadySeeded = localStorage.getItem('savings_tracker_init_seeded_v1') === 'true';
+        if (isAlreadySeeded) {
+          setDeposits([]);
+          setIsDbLoading(false);
+        } else {
+          // Первичный сид INITIAL_DEPOSITS в Firestore, если это первый запуск приложения
+          const batch = writeBatch(db);
+          INITIAL_DEPOSITS.forEach(dep => {
+            const docRef = doc(db, 'deposits', String(dep.id));
+            batch.set(docRef, {
+              id: dep.id,
+              date: dep.date,
+              amountByn: dep.amountByn,
+              amountUsd: dep.amountUsd,
+              commissionByn: dep.commissionByn,
+              commissionUsd: dep.commissionUsd
+            });
           });
-        });
-        batch.commit()
-          .then(() => {
-            console.log("Успешный сид начальных депозитов в Firestore");
-          })
-          .catch(err => {
-            console.error("Не удалось записать начальный сид в Firestore:", err);
-          });
+          batch.commit()
+            .then(() => {
+              console.log("Успешный сид начальных депозитов в Firestore");
+              localStorage.setItem('savings_tracker_init_seeded_v1', 'true');
+            })
+            .catch(err => {
+              console.error("Не удалось записать начальный сид в Firestore:", err);
+            })
+            .finally(() => {
+              setIsDbLoading(false);
+            });
+        }
       } else {
+        // Если база не пустая, сохраняем в localStorage, что инициализация пройдена
+        localStorage.setItem('savings_tracker_init_seeded_v1', 'true');
         setDeposits(list);
         setIsDbLoading(false);
       }
@@ -541,6 +552,7 @@ export default function App() {
 
   // Полная очистка облачной базы данных
   const handleClearSandbox = async () => {
+    localStorage.setItem('savings_tracker_init_seeded_v1', 'true');
     triggerSnackbar("Очистка облачных записей...");
     try {
       const snapshot = await getDocs(collection(db, 'deposits'));
@@ -794,7 +806,7 @@ export default function App() {
                     className="w-full bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold py-3 rounded-xl shadow-lg shadow-emerald-950/20 active:scale-95 transition-all text-sm uppercase tracking-widest cursor-pointer flex items-center justify-center gap-1.5"
                   >
                     <Plus className="w-4 h-4 stroke-[3px]" />
-                    Депозит
+                    Депозировать
                   </button>
 
                   <button 
