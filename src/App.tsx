@@ -673,14 +673,6 @@ export default function App() {
 
         <div className="flex items-center gap-2 w-full sm:w-auto justify-end">
           <button 
-            onClick={handleSeedDemodataset}
-            className="text-[11px] px-3 py-1.5 bg-[#18181B] hover:bg-[#27272A] border border-[#27272A] rounded-md font-semibold text-[#10B981] flex items-center gap-1.5 transition active:scale-95"
-            title="Заполнить симулятор случайными операциями для проверки пагинации"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            Сгенерировать 24 операции
-          </button>
-          <button 
             onClick={handleClearSandbox}
             className="text-[11px] px-3 py-1.5 bg-[#18181B] hover:bg-[#27272A] border border-[#27272A] rounded-md font-semibold text-rose-400 flex items-center gap-1.5 transition active:scale-95"
             title="Очистить все операции из симулятора"
