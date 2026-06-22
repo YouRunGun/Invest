@@ -648,17 +648,7 @@ export default function App() {
       {/* РАЗДЕЛЬНЫЕ ВКЛАДКИ СВЕРХУ ДЛЯ ОТОБРАЖЕНИЯ ИНТЕРАКТИВНОГО ТРЕКЕРА И ПРОДЖЕКТ-СПЕЦИФИКАЦИИ */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 bg-[#09090B] p-2 rounded-xl border border-[#27272A]/75">
         <div className="flex items-center gap-1.5 w-full sm:w-auto overflow-x-auto">
-          <button 
-            onClick={() => setActiveTab('tracker')}
-            className={`flex-1 sm:flex-initial text-xs px-4 py-2 rounded-lg font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
-              activeTab === 'tracker'
-                ? 'bg-[#10B981] text-slate-950 shadow-md shadow-emerald-500/10'
-                : 'hover:bg-[#18181B] text-[#A1A1AA] hover:text-white'
-            }`}
-          >
-            <Smartphone className="w-4 h-4" />
-            Интерфейс & Симулятор
-          </button>
+         
          
 
           {/* Индикатор подключения Firestore */}
