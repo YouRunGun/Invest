@@ -794,7 +794,7 @@ export default function App() {
                     className="w-full bg-[#10B981] hover:bg-[#059669] text-slate-950 font-bold py-3 rounded-xl shadow-lg shadow-emerald-950/20 active:scale-95 transition-all text-sm uppercase tracking-widest cursor-pointer flex items-center justify-center gap-1.5"
                   >
                     <Plus className="w-4 h-4 stroke-[3px]" />
-                    Депозировать
+                    Депозит
                   </button>
 
                   <button 
