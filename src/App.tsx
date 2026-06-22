@@ -659,17 +659,7 @@ export default function App() {
             <Smartphone className="w-4 h-4" />
             Интерфейс & Симулятор
           </button>
-          <button 
-            onClick={() => setActiveTab('code')}
-            className={`flex-1 sm:flex-initial text-xs px-4 py-2 rounded-lg font-bold uppercase tracking-wider transition-all flex items-center justify-center gap-2 ${
-              activeTab === 'code'
-                ? 'bg-[#10B981] text-slate-950 shadow-md shadow-emerald-500/10'
-                : 'hover:bg-[#18181B] text-[#A1A1AA] hover:text-white'
-            }`}
-          >
-            <Code className="w-4 h-4" />
-            Исходный код Kotlin / Compose
-          </button>
+         
 
           {/* Индикатор подключения Firestore */}
           <div className="flex items-center gap-1.5 px-3 py-1.5 bg-[#18181B] border border-[#27272A] rounded-lg text-xs" title="Статус синхронизации с базой данных">
